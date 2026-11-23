@@ -78,12 +78,21 @@
   /* Animações de entrada (GSAP + ScrollTrigger) */
   if (!reduce && hasGsap && window.ScrollTrigger) {
     gsap.registerPlugin(window.ScrollTrigger);
-    const from = { up: { y: 48 }, down: { y: -40 }, left: { x: -56 }, right: { x: 56 } };
+    const sx = window.matchMedia('(max-width: 767px)').matches ? 0 : 56;
+    const from = { up: { y: 48 }, down: { y: -40 }, left: { x: -sx }, right: { x: sx } };
     document.querySelectorAll('[data-reveal]').forEach((el) => gsap.set(el, from[el.dataset.reveal] || from.up));
     ScrollTrigger.batch('[data-reveal]', {
       start: 'top 88%',
       once: true,
-      onEnter: (batch) => gsap.to(batch, { opacity: 1, x: 0, y: 0, duration: 1.1, ease: 'power3.out', stagger: 0.12, overwrite: true })
+      onEnter: (batch) => gsap.to(batch, { opacity: 1, x: 0, y: 0, duration: 1.1, ease: 'power3.out', stagger: 0.12, overwrite: 'auto' })
+    });
+
+    // Saída: ao rolar para baixo, o elemento sobe e some no topo; ao voltar, desce de novo (scrub reversível)
+    document.querySelectorAll('[data-reveal], .hero__copy').forEach((el) => {
+      gsap.fromTo(el, { y: 0, opacity: 1 }, {
+        y: -90, opacity: 0, ease: 'none', immediateRender: false,
+        scrollTrigger: { trigger: el, start: 'bottom 32%', end: 'bottom top', scrub: 0.6 }
+      });
     });
 
     // Capa: entrada em sequência + leve parallax do Dr. Marcelo
@@ -102,7 +111,7 @@
   }
 
   /* Vídeo do Sobre: só toca quando visível */
-  const video = document.querySelector('.about__video');
+  const video = document.querySelector('video.about__video');
   if (video) {
     if (reduce) { video.removeAttribute('autoplay'); video.pause(); }
     else if ('IntersectionObserver' in window) {
@@ -199,11 +208,10 @@
   });
 
   /* FAQ: acordeão suave (padrão shadcn), um aberto por vez */
-  const acc = document.querySelector('[data-accordion]');
-  if (acc) {
+  document.querySelectorAll('[data-accordion]').forEach((acc) => {
     const items = [...acc.querySelectorAll('details')];
     const animate = (d, open) => {
-      const body = d.querySelector('.faq__body');
+      const body = d.querySelector('.faq__body, .acc__body');
       if (reduce || !hasGsap) { d.open = open; return; }
       if (open) {
         d.open = true;
@@ -218,7 +226,7 @@
       items.forEach((o) => { if (o !== d && o.open) animate(o, false); });
       animate(d, willOpen);
     }));
-  }
+  });
 
   /* Ano no rodapé */
   document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
