@@ -236,7 +236,7 @@
         <a class="btn btn--dark btn--small" href="https://wa.me/5569996012496?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20para%20aparelho%20ortod%C3%B4ntico." target="_blank" rel="noopener" data-wa="servico-ortodontia">Agendar ortodontia</a>
       </li>
       <li class="service" data-reveal="up">
-        <picture class="service__img"><source type="image/avif" srcset="assets/img/servicos/clareamento-sorriso-480.avif 480w, assets/img/servicos/clareamento-sorriso-720.avif 720w" sizes="(min-width:1024px) 20vw, 72vw"><img src="assets/img/servicos/clareamento-sorriso-480.webp" srcset="assets/img/servicos/clareamento-sorriso-480.webp 480w, assets/img/servicos/clareamento-sorriso-720.webp 720w" sizes="(min-width:1024px) 20vw, 72vw" alt="Sorriso em destaque" width="720" height="540" loading="lazy"></picture>
+        <picture class="service__img"><img src="assets/img/fotos/comparacao-paciente-depois.webp" alt="Homem de barba sorrindo" width="720" height="960" loading="lazy" decoding="async"></picture>
         <span class="tag">Clareamento</span>
         <h3>Clareamento dental</h3>
         <p class="service__hook">Os dentes amarelados aparecem em toda foto?</p>
@@ -294,7 +294,43 @@
           <span aria-hidden="true">Antes</span>
         </div>
         <div class="shot__panel">
-          <img src="assets/img/fotos/comparacao-sorriso-depois.webp" alt="Dentes da frente após o tratamento" width="352" height="220" loading="lazy" decoding="async" draggable="false">
+          <img src="assets/img/fotos/comparacao-sorriso-depois.webp" alt="Dentes da frente após o tratamento. Imagem retocada." width="352" height="220" loading="lazy" decoding="async" draggable="false">
+          <svg class="shot__enamel-adjustment" viewBox="0 0 352 220" aria-hidden="true" focusable="false">
+            <defs>
+              <filter id="esmalte-cor" color-interpolation-filters="sRGB">
+                <feColorMatrix type="saturate" values=".57"/>
+                <feComponentTransfer>
+                  <feFuncR type="linear" slope="1.045"/>
+                  <feFuncG type="linear" slope="1.065"/>
+                  <feFuncB type="linear" slope="1.095"/>
+                </feComponentTransfer>
+              </filter>
+              <filter id="esmalte-bordas"><feGaussianBlur stdDeviation="1.5"/></filter>
+              <mask id="esmalte-area" maskUnits="userSpaceOnUse" x="0" y="0" width="352" height="220">
+                <path fill="#fff" filter="url(#esmalte-bordas)" d="
+                  M3 52 Q12 54 17 62 L17 79 Q11 83 6 75 Z
+                  M20 56 Q34 63 39 63 Q41 82 32 89 Q25 88 22 79 Z
+                  M46 55 Q61 54 74 66 Q75 86 66 101 Q58 104 49 84 Z
+                  M80 67 Q92 58 108 64 Q116 74 113 101 Q104 107 89 102 Q80 97 80 67 Z
+                  M122 65 Q139 51 155 57 Q168 63 167 87 L166 106 Q149 111 128 107 Q119 105 122 65 Z
+                  M175 72 Q192 57 209 61 Q222 64 220 106 Q204 112 183 109 Q171 108 175 72 Z
+                  M227 72 Q240 62 253 66 Q262 70 259 100 Q250 108 233 105 Q225 101 227 72 Z
+                  M266 69 Q275 57 287 56 Q295 60 290 78 Q286 98 276 103 Q266 96 266 69 Z
+                  M297 60 Q308 55 322 51 Q328 64 318 82 Q304 96 298 84 Z
+                  M328 59 Q339 48 348 48 Q347 69 337 79 Q327 80 328 59 Z
+                  M22 130 Q31 116 41 119 Q48 127 43 146 Q37 155 28 154 Q22 147 22 130 Z
+                  M51 125 Q61 111 71 111 Q83 115 82 135 Q73 163 62 164 Q50 156 51 125 Z
+                  M87 120 Q101 114 113 118 Q122 122 119 145 Q113 163 101 163 Q89 158 87 120 Z
+                  M124 123 Q138 116 152 121 Q158 129 153 150 Q147 165 137 166 Q126 158 124 123 Z
+                  M159 125 Q173 119 187 123 Q193 127 188 152 Q181 171 173 169 Q161 162 159 125 Z
+                  M195 125 Q208 120 222 122 Q227 129 224 149 Q217 168 208 167 Q197 161 195 125 Z
+                  M231 121 Q244 121 257 115 Q265 120 258 146 Q253 164 242 162 Q234 159 231 121 Z
+                  M265 120 Q273 107 285 110 Q295 116 291 141 Q284 157 278 159 Q270 157 265 120 Z
+                  M296 117 Q304 106 314 111 Q324 122 320 143 Q314 153 306 151 Q300 145 296 117 Z"/>
+              </mask>
+            </defs>
+            <image href="assets/img/fotos/comparacao-sorriso-depois.webp" width="352" height="220" filter="url(#esmalte-cor)" mask="url(#esmalte-area)"/>
+          </svg>
           <span aria-hidden="true">Depois</span>
         </div>
       </figure>
@@ -317,6 +353,7 @@
     <span class="carousel-count" aria-live="polite">1/3</span>
     <button type="button" class="circle-btn" data-next aria-label="Próximo card"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
   </div>
+  <p class="container showcase__note">Imagem retocada no segundo card.</p>
 </section>
 
 <!-- 6. AVALIAÇÕES (padrão HING — LP Anaru) -->
