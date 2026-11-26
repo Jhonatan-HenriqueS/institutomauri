@@ -2,11 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://{{DOMINIO}}/</loc>
-    <lastmod>2026-11-21</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image><image:loc>https://{{DOMINIO}}/assets/img/hero/marcelo-940.webp</image:loc></image:image>
-    <image:image><image:loc>https://{{DOMINIO}}/assets/img/fotos/dr-marcelo-atendimento-800.webp</image:loc></image:image>
+    <image:image><image:loc>https://{{DOMINIO}}/assets/img/fotos/comparacao-sorriso-depois.webp</image:loc></image:image>
+    <image:image><image:loc>https://{{DOMINIO}}/assets/img/fotos/comparacao-restauracao-depois.webp</image:loc></image:image>
   </url>
   <url><loc>https://{{DOMINIO}}/politica-de-privacidade.html</loc><lastmod>2026-11-21</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://{{DOMINIO}}/termos-de-uso.html</loc><lastmod>2026-11-21</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>

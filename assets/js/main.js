@@ -119,62 +119,7 @@
     }
   }
 
-  /* Fotos dos dentes: carrossel central (ref. GSAP showcase) */
-  const stage = document.querySelector('[data-showcase]');
-  if (stage) {
-    const track = stage.querySelector('.showcase__track');
-    const slides = [...track.children];
-    const count = document.querySelector('[data-showcase-count]');
-    const prev = document.querySelector('[data-showcase-prev]');
-    const next = document.querySelector('[data-showcase-next]');
-    let idx = 0, x = 0;
-    const targetX = (i) => stage.clientWidth / 2 - (slides[i].offsetLeft + slides[i].offsetWidth / 2);
-    const setX = (v, animate) => {
-      x = v;
-      if (hasGsap) gsap.to(track, { x: v, duration: animate && !reduce ? 0.9 : 0, ease: 'power3.out', overwrite: true });
-      else track.style.transform = `translateX(${v}px)`;
-    };
-    const go = (i, animate = true) => {
-      idx = (i + slides.length) % slides.length;
-      slides.forEach((s, k) => { s.classList.toggle('is-active', k === idx); s.setAttribute('aria-hidden', k === idx ? 'false' : 'true'); });
-      if (count) count.textContent = `${idx + 1} / ${slides.length}`;
-      setX(targetX(idx), animate);
-    };
-    prev && prev.addEventListener('click', () => go(idx - 1));
-    next && next.addEventListener('click', () => go(idx + 1));
-    stage.addEventListener('keydown', (ev) => {
-      if (ev.key === 'ArrowRight') { ev.preventDefault(); go(idx + 1); }
-      if (ev.key === 'ArrowLeft') { ev.preventDefault(); go(idx - 1); }
-    });
-    slides.forEach((s, k) => s.addEventListener('click', () => { if (k !== idx && !moved) go(k); }));
-    // Arrastar (mouse e toque)
-    let startX = 0, baseX = 0, dragging = false, moved = false;
-    stage.addEventListener('pointerdown', (ev) => {
-      if (ev.button !== 0) return;
-      dragging = true; moved = false; startX = ev.clientX; baseX = x;
-      stage.setPointerCapture(ev.pointerId);
-    });
-    stage.addEventListener('pointermove', (ev) => {
-      if (!dragging) return;
-      const dx = ev.clientX - startX;
-      if (Math.abs(dx) > 6) moved = true;
-      if (moved) { x = baseX + dx; if (hasGsap) gsap.set(track, { x }); else track.style.transform = `translateX(${x}px)`; }
-    });
-    const end = (ev) => {
-      if (!dragging) return;
-      dragging = false;
-      const dx = ev.clientX - startX;
-      if (dx < -60) go(idx + 1); else if (dx > 60) go(idx - 1); else go(idx);
-      setTimeout(() => { moved = false; }, 0);
-    };
-    stage.addEventListener('pointerup', end);
-    stage.addEventListener('pointercancel', end);
-    window.addEventListener('resize', debounce(() => go(idx, false), 120));
-    window.addEventListener('load', () => go(idx, false));
-    go(0, false);
-  }
-
-  /* Carrossel de avaliações */
+  /* Carrosséis de resultados e avaliações */
   document.querySelectorAll('[data-carousel-nav]').forEach((nav) => {
     const track = document.getElementById(nav.dataset.carouselNav);
     if (!track) return;
